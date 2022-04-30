@@ -37,6 +37,6 @@ jobs:
           echo test, and deploy your project.
 
       - name: end2end tests
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'}}
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'}} || github.event.pull_request.draft
         run: |
           echo i did an end2end test
