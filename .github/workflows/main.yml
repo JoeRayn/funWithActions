@@ -9,6 +9,7 @@ on:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
+    types: [ assigned, opened, synchronize, reopened, ready_for_review ]
 
   # Allows you to run this workflow manually from the Actions tab
   #workflow_dispatch:
@@ -36,6 +37,6 @@ jobs:
           echo test, and deploy your project.
 
       - name: end2end tests
-        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || (github.event_name != 'pull_request' && ! github.event.pull_request.draft)}}
+        if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || (github.event_name == 'pull_request' && ! github.event.pull_request.draft)}}
         run: |
           echo i did an end2end test
